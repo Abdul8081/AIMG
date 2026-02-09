@@ -9,6 +9,7 @@
     "test": "jest --detectOpenHandles --forceExit"
   },
   "dependencies": {
+    "@google/genai": "^1.40.0",
     "@google/generative-ai": "^0.21.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
