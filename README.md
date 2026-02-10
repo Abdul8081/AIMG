@@ -1,106 +1,104 @@
-# AI Image Metadata and Caption Generator
+# 🧠 AI Image Metadata and Caption Generator
 
-A full-stack web application that allows users to upload images and automatically generates AI-powered captions and tags using Google Gemini Vision API.
+A modern, full-stack web application that allows users to upload images, automatically extract AI-generated metadata and captions, and manage them through a clean, responsive gallery interface.
 
-![Tech Stack](https://img.shields.io/badge/React-18-blue) ![Node.js](https://img.shields.io/badge/Node.js-Express-green) ![MongoDB](https://img.shields.io/badge/MongoDB-GridFS-brightgreen) ![AI](https://img.shields.io/badge/AI-Gemini_Vision-orange)
+Built as a **demo-ready, production-style project** using React, Node.js, MongoDB GridFS, and AI Vision models.
 
-## Features
 
-- 🖼️ **Image Upload** - Drag and drop or click to upload JPEG/PNG images
-- 🤖 **AI-Powered Captions** - Automatic caption generation using Google Gemini Vision API
-- 🏷️ **Smart Tags** - 5-8 descriptive tags generated for each image
-- 📝 **Editable Captions** - Modify captions without re-running AI analysis
-- 💾 **GridFS Storage** - Images stored efficiently in MongoDB GridFS
-- 🎨 **Modern UI** - Beautiful dark theme with glassmorphism effects
+## 📸 Preview
 
-## Tech Stack
+### 🏠 Landing Page
+<img width="1901" height="909" alt="image" src="https://github.com/user-attachments/assets/a289281f-867d-4b8c-8de8-8fb24ad2b3e8" />
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React.js, Ant Design |
-| Backend | Node.js, Express.js |
-| Database | MongoDB Atlas, GridFS |
-| AI | Google Gemini Vision API |
-| Upload | Multer |
 
-## Project Structure
+### 🤖 AI Processing & Gallery
+<img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/d6b57a9f-226f-450b-850e-fb751c955157" />
+<img width="1901" height="843" alt="image" src="https://github.com/user-attachments/assets/7d884034-d97c-4c92-bf5f-4a35e920f3c3" />
 
+
+
+### ℹ️ About Page
+<img width="1904" height="911" alt="image" src="https://github.com/user-attachments/assets/44c6eece-3f4d-4db5-ad66-fc5145c0c337" />
+
+### MongoDB Database 
+
+<img width="1858" height="788" alt="image" src="https://github.com/user-attachments/assets/fc333b56-ef4d-482d-8670-cf978abc1b07" />
+
+<img width="1815" height="788" alt="image" src="https://github.com/user-attachments/assets/ab89d16a-2cc2-4ba3-9308-ab4d4bb82f24" />
+
+<img width="1855" height="788" alt="image" src="https://github.com/user-attachments/assets/ab910277-5c19-4d8b-86c6-142bb5702983" />
+
+
+---
+
+## 🚀 Key Features
+
+- 📤 Upload images via a modern drag-and-drop gallery
+- 🗄️ Store images efficiently using **MongoDB GridFS**
+- 🤖 Generate **AI-based captions and metadata (tags)**
+- 🏷️ Display tags and captions below each image
+- ✏️ Edit and re-save captions without re-running AI
+- ⏳ Skeleton loaders while AI is processing
+- 📱 Fully responsive UI (desktop & mobile)
+- 🧭 Clean navigation with landing, gallery, and about pages
+
+---
+
+
+## 🏗️ System Architecture
+
+<img width="978" height="469" alt="image" src="https://github.com/user-attachments/assets/2e687caf-c5bf-40bf-83c3-e8a3cb289a8a" />
+
+---
+
+## 🗂️ Project Structure
+
+### Backend
+<img width="821" height="543" alt="image" src="https://github.com/user-attachments/assets/399b871b-51af-447f-b5a0-cd8748b440bf" />
+
+
+### Frontend
+<img width="821" height="847" alt="image" src="https://github.com/user-attachments/assets/54a493ee-28d0-479f-8871-22e9e49a6b96" />
+
+---
+
+## 🧪 Unit Testing
+
+Basic unit tests are included for:
+
+- Image upload API
+- AI processing flow
+- Metadata and caption storage
+
+Run tests with:
+
+```bash
+npm test
 ```
-AIMG/
-├── backend/
-│   ├── config/
-│   │   ├── db.js           # MongoDB connection
-│   │   └── gridfs.js       # GridFS configuration
-│   ├── controllers/
-│   │   └── images.controller.js
-│   ├── models/
-│   │   └── Image.js
-│   ├── routes/
-│   │   └── images.js
-│   ├── services/
-│   │   └── gemini.service.js
-│   ├── tests/
-│   │   └── images.test.js
-│   ├── app.js
-│   ├── server.js
-│   └── package.json
-├── frontend/
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ImageUpload.jsx
-│   │   │   ├── ImageCard.jsx
-│   │   │   └── EditCaptionModal.jsx
-│   │   ├── pages/
-│   │   │   └── Gallery.jsx
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── index.css
-│   └── package.json
-├── .env
-└── README.md
-```
 
-## Setup Instructions
+<img width="1106" height="464" alt="image" src="https://github.com/user-attachments/assets/00073471-50a4-4f8a-85d8-25c7d81b9d37" />
 
-### Prerequisites
+---
 
-- Node.js (v16 or higher)
-- MongoDB Atlas account
-- Google Cloud account with Gemini API access
-
-### Environment Configuration
-
-Create a `.env` file in the project root:
-
-```env
-MONGO_URI=mongodb+srv://your-username:your-password@cluster.mongodb.net/aimg
-GEMINI_API_KEY=your-gemini-api-key
+## Environment Variable Setup
+```bash
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<your db name>
+GEMINI_API_KEY=<your API Key>
 PORT=5000
 ```
 
-### Backend Setup
-
+### ▶️ Running the Project Locally
 ```bash
 cd backend
 npm install
 npm start
 ```
 
-Server will start on http://localhost:5000
-
-### Frontend Setup
-
 ```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
-
-Frontend will open on http://localhost:3000
 
 ## API Endpoints
 
@@ -111,32 +109,86 @@ Frontend will open on http://localhost:3000
 | GET | `/api/images/:id` | Stream image from GridFS |
 | PUT | `/api/images/:id/caption` | Update caption only |
 
-## Running Tests
+---
 
-```bash
-cd backend
-npm test
-```
+## 🛠️ Tech Stack
 
-## Demo Instructions
+### Frontend
+- **React.js**
+- **Ant Design**
+- Axios
+- React Router
 
-1. Start both backend and frontend servers
-2. Open http://localhost:3000 in your browser
-3. Drag and drop a JPEG or PNG image onto the upload area
-4. Wait for the AI to generate caption and tags
-5. View the image in the gallery with its caption and tags
-6. Click "Edit Caption" to modify the caption
-7. Save changes - caption updates without re-running AI
+### Backend
+- **Node.js**
+- **Express.js**
+- **Multer** (file uploads)
+- MongoDB Native Driver / Mongoose
 
-## Sample Images
+### Database
+- **MongoDB Atlas**
+- **GridFS** for image storage
 
-Use any JPEG or PNG images for testing. The AI works best with:
-- Landscape/nature photos
-- People and portraits
-- Objects and products
-- Architecture and buildings
-- Food and cuisine
+### AI
+- **Google Gemini Vision API**  
+  *(Architecture supports Google Vision API / OpenAI Vision as alternatives)*
 
-## License
+### Testing
+- Jest
+- Supertest
 
-MIT License
+---
+
+## 🧩 How the App Works
+
+1. User uploads an image from the gallery UI
+2. Image is stored in MongoDB using **GridFS**
+3. Image is sent to the AI Vision model
+4. AI returns:
+   - A human-readable caption
+   - 5–8 descriptive tags
+5. Caption & metadata are saved in MongoDB
+6. UI displays image, caption, and tags
+7. User can edit and re-save the caption
+
+### 📦 Deliverables Covered
+
+✔ Full source code hosted on GitHub  
+✔ AI-generated captions and metadata  
+✔ MongoDB GridFS image storage  
+✔ Demo-ready UI with sample images  
+✔ Unit tests for upload & processing  
+✔ Clean README and documentation  
+
+---
+
+### 🔮 Future Enhancements
+
+- Authentication & user profiles  
+- Image search by tags  
+- Pagination & infinite scrolling  
+- Cloud storage (AWS S3 / GCS)  
+- AI model switching (Gemini ↔ OpenAI ↔ Vision API)  
+
+---
+
+### 👨‍💻 Author
+
+**Abdul Muid**  
+
+📧 Email: [amuid677@gmail.com](mailto:amuid677@gmail.com)  
+
+🔗 LinkedIn: https://www.linkedin.com/in/abdul-muid-00973b264/  
+
+💻 GitHub: https://github.com/Abdul8081  
+
+---
+
+### 📜 License
+
+This project is made for **learning purposes**.
+
+
+
+
+
