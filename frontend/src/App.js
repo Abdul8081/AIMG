@@ -1,5 +1,7 @@
 import React from 'react';
 import { ConfigProvider, theme } from 'antd';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Gallery from './pages/Gallery';
 
 function App() {
@@ -10,15 +12,21 @@ function App() {
                 token: {
                     colorPrimary: '#667eea',
                     borderRadius: 8,
+                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                 },
             }}
         >
             <div className="app-container">
-                <header className="app-header">
-                    <h1 className="app-title">AI Image Gallery</h1>
-                    <p className="app-subtitle">Upload images and get AI-generated captions and tags</p>
-                </header>
-                <Gallery />
+                <Navbar />
+                <main className="app-main">
+                    <header className="app-header">
+                        <p className="app-subtitle">
+                            Upload images and get AI-generated captions and tags
+                        </p>
+                    </header>
+                    <Gallery />
+                </main>
+                <Footer />
             </div>
         </ConfigProvider>
     );

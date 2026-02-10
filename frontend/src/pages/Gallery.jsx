@@ -51,7 +51,12 @@ const Gallery = () => {
             </section>
 
             <section className="gallery-section">
-                <h2 className="gallery-title">Your Images</h2>
+                <h2 className="gallery-title">
+                    Your Images
+                    {images.length > 0 && (
+                        <span className="gallery-count">{images.length}</span>
+                    )}
+                </h2>
 
                 {loading ? (
                     <div className="loading-container">

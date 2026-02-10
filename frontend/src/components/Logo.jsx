@@ -1,0 +1,47 @@
+import React from 'react';
+
+const Logo = ({ className = '', size = 32 }) => {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <defs>
+                <linearGradient id="logoGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#5565e8" />
+                    <stop offset="100%" stopColor="#18f2e5" />
+                </linearGradient>
+                <linearGradient id="logoGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#ff6f61" />
+                    <stop offset="100%" stopColor="#ffab40" />
+                </linearGradient>
+            </defs>
+
+            <g>
+                <circle cx="24" cy="24" r="20" stroke="url(#logoGradient1)" strokeWidth="2" fill="none" opacity="0.8" />
+                <path
+                    d="M24 8 C16 8, 8 16, 8 24 C8 32, 16 40, 24 40 C32 40, 40 32, 40 24"
+                    stroke="url(#logoGradient2)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    fill="none"
+                />
+                <circle cx="24" cy="24" r="2" fill="url(#logoGradient1)" />
+                <circle cx="18" cy="18" r="1.5" fill="url(#logoGradient1)" opacity="0.7" />
+                <circle cx="30" cy="18" r="1.5" fill="url(#logoGradient1)" opacity="0.7" />
+                <circle cx="18" cy="30" r="1.5" fill="url(#logoGradient2)" opacity="0.7" />
+                <circle cx="30" cy="30" r="1.5" fill="url(#logoGradient2)" opacity="0.7" />
+                <line x1="24" y1="24" x2="18" y2="18" stroke="url(#logoGradient1)" strokeWidth="0.5" opacity="0.5" />
+                <line x1="24" y1="24" x2="30" y2="18" stroke="url(#logoGradient1)" strokeWidth="0.5" opacity="0.5" />
+                <line x1="24" y1="24" x2="18" y2="30" stroke="url(#logoGradient2)" strokeWidth="0.5" opacity="0.5" />
+                <line x1="24" y1="24" x2="30" y2="30" stroke="url(#logoGradient2)" strokeWidth="0.5" opacity="0.5" />
+            </g>
+        </svg>
+    );
+};
+
+export default Logo;
