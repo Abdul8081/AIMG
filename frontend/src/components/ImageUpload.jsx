@@ -5,9 +5,12 @@ import { uploadImage } from '../services/api';
 
 const { Dragger } = Upload;
 
-const ImageUpload = ({ onUploadSuccess }) => {
+const ImageUpload = ({ onUploadSuccess, onUploadStart, onUploadEnd }) => {
     const handleUpload = async (options) => {
         const { file, onSuccess, onError, onProgress } = options;
+
+        // Signal that an upload has started (triggers skeleton)
+        if (onUploadStart) onUploadStart();
 
         try {
             onProgress({ percent: 30 });
@@ -26,6 +29,9 @@ const ImageUpload = ({ onUploadSuccess }) => {
             console.error('Upload error:', error);
             onError(error);
             message.error(`${file.name} upload failed. Please try again.`);
+        } finally {
+            // Signal that the upload has ended (removes skeleton)
+            if (onUploadEnd) onUploadEnd();
         }
     };
 

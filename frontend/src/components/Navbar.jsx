@@ -1,72 +1,108 @@
-import React from 'react';
-import { Button, Tooltip } from 'antd';
-import { GithubOutlined, LinkedinOutlined, MailOutlined, FileTextOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Drawer } from 'antd';
+import { MenuOutlined, MailOutlined, CloseOutlined } from '@ant-design/icons';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import ShuffleText from './ShuffleText';
 
+const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'TryAIGallery', path: '/gallery' },
+    { label: 'About', path: '/about' },
+];
+
 const Navbar = () => {
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogoClick = () => {
+        navigate('/');
+        setDrawerOpen(false);
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-inner">
-                <div className="navbar-brand">
+                {/* LEFT — Logo + Title */}
+                <div className="navbar-brand" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
                     <Logo size={36} />
                     <ShuffleText
                         text="AIGALLARYIMAGE"
-                        className="navbar-title"
+                        className="navbar-title navbar-title-desktop"
                     />
                 </div>
 
-                <div className="navbar-links">
-                    <Tooltip title="amuid677@gmail.com">
-                        <a
-                            href="mailto:amuid677@gmail.com"
-                            className="navbar-icon-link"
-                            aria-label="Email"
+                {/* CENTER — Nav Links (desktop) */}
+                <div className="navbar-nav-center">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            end={item.path === '/'}
+                            className={({ isActive }) =>
+                                `navbar-nav-link ${isActive ? 'navbar-nav-link-active' : ''}`
+                            }
                         >
-                            <MailOutlined />
-                        </a>
-                    </Tooltip>
+                            {item.label}
+                        </NavLink>
+                    ))}
+                </div>
 
-                    <Tooltip title="LinkedIn">
-                        <a
-                            href="https://www.linkedin.com/in/abdul-muid-00973b264/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="navbar-icon-link"
-                            aria-label="LinkedIn"
-                        >
-                            <LinkedinOutlined />
-                        </a>
-                    </Tooltip>
-
-                    <Tooltip title="GitHub">
-                        <a
-                            href="https://github.com/Abdul8081"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="navbar-icon-link"
-                            aria-label="GitHub"
-                        >
-                            <GithubOutlined />
-                        </a>
-                    </Tooltip>
-
-                    <a
-                        href="https://drive.google.com/file/d/1n_hijGets16GIBhEKyy00QKBdgI03BIH/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="resume-button-link"
-                    >
-                        <Button
-                            type="primary"
-                            icon={<FileTextOutlined />}
-                            className="resume-button"
-                        >
-                            My Resume
-                        </Button>
+                {/* RIGHT — Email (desktop) */}
+                <div className="navbar-right-desktop">
+                    <a href="mailto:amuid677@gmail.com" className="navbar-email-link">
+                        <MailOutlined /> amuid677@gmail.com
                     </a>
                 </div>
+
+                {/* MOBILE — Hamburger */}
+                <button
+                    className="navbar-hamburger"
+                    onClick={() => setDrawerOpen(true)}
+                    aria-label="Open menu"
+                >
+                    <MenuOutlined />
+                </button>
             </div>
+
+            {/* MOBILE — Drawer */}
+            <Drawer
+                title={null}
+                placement="right"
+                onClose={() => setDrawerOpen(false)}
+                open={drawerOpen}
+                width={280}
+                className="navbar-drawer"
+                closeIcon={<CloseOutlined style={{ color: '#a0aec0', fontSize: 18 }} />}
+                styles={{
+                    body: { padding: 0, background: '#0f0f23' },
+                    header: { background: '#0f0f23', borderBottom: '1px solid rgba(255,255,255,0.06)' },
+                }}
+            >
+                <div className="drawer-menu">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            end={item.path === '/'}
+                            className={({ isActive }) =>
+                                `drawer-link ${isActive ? 'drawer-link-active' : ''}`
+                            }
+                            onClick={() => setDrawerOpen(false)}
+                        >
+                            {item.label}
+                        </NavLink>
+                    ))}
+                    <div className="drawer-divider"></div>
+                    <a
+                        href="mailto:amuid677@gmail.com"
+                        className="drawer-link drawer-email"
+                        onClick={() => setDrawerOpen(false)}
+                    >
+                        <MailOutlined /> amuid677@gmail.com
+                    </a>
+                </div>
+            </Drawer>
         </nav>
     );
 };

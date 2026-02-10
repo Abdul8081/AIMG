@@ -3,12 +3,14 @@ import { Spin } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import ImageUpload from '../components/ImageUpload';
 import ImageCard from '../components/ImageCard';
+import SkeletonCard from '../components/SkeletonCard';
 import EditCaptionModal from '../components/EditCaptionModal';
 import { getAllImages } from '../services/api';
 
 const Gallery = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [uploadingCount, setUploadingCount] = useState(0);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -26,6 +28,14 @@ const Gallery = () => {
     useEffect(() => {
         fetchImages();
     }, [fetchImages]);
+
+    const handleUploadStart = () => {
+        setUploadingCount((prev) => prev + 1);
+    };
+
+    const handleUploadEnd = () => {
+        setUploadingCount((prev) => Math.max(0, prev - 1));
+    };
 
     const handleUploadSuccess = (newImage) => {
         setImages((prev) => [newImage, ...prev]);
@@ -47,7 +57,11 @@ const Gallery = () => {
     return (
         <>
             <section className="upload-section">
-                <ImageUpload onUploadSuccess={handleUploadSuccess} />
+                <ImageUpload
+                    onUploadSuccess={handleUploadSuccess}
+                    onUploadStart={handleUploadStart}
+                    onUploadEnd={handleUploadEnd}
+                />
             </section>
 
             <section className="gallery-section">
@@ -62,7 +76,7 @@ const Gallery = () => {
                     <div className="loading-container">
                         <Spin size="large" />
                     </div>
-                ) : images.length === 0 ? (
+                ) : images.length === 0 && uploadingCount === 0 ? (
                     <div className="empty-gallery">
                         <PictureOutlined className="empty-gallery-icon" />
                         <p className="empty-gallery-text">
@@ -71,6 +85,10 @@ const Gallery = () => {
                     </div>
                 ) : (
                     <div className="gallery-grid">
+                        {/* Skeleton placeholders for in-flight uploads */}
+                        {Array.from({ length: uploadingCount }).map((_, i) => (
+                            <SkeletonCard key={`skeleton-${i}`} />
+                        ))}
                         {images.map((image) => (
                             <ImageCard
                                 key={image.id}
