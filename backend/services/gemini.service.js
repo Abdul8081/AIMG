@@ -72,7 +72,7 @@ Respond in the following JSON format only (no markdown, no code blocks):
         }
         console.error('Full error:', error);
         return {
-            caption: 'AI-generated caption temporarily unavailable Due to Increased Limit',
+            caption: 'AI-generated caption temporarily unavailable My be due to Increased Limit',
             tags: ['image', 'upload']
         };
     }
